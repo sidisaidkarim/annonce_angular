@@ -1,0 +1,58 @@
+<div class="row">
+    <div class="col-12">
+        <form #search_form = "ngForm" (ngSubmit)="submit(search_form)">
+            <div class="mb-3">
+                <label for="text-search" class="form-label">Titre contient</label>
+                <input type="text" class="form-control" id="text-search" aria-describedby="emailHelp" name="titre" ngModel>
+            </div>
+
+            <div class="mb-3">
+                <label for="type" class="form-label">type d'annonce</label>
+                <select class="form-select" aria-label="Default select example" name="type" ngModel>
+                    <option value="IMMOBILIER">Immobilier</option>
+                    <option value="VEHICULE">Véhicule</option>
+                    <option value="EMPLOI">Emploi</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="prix-min" class="form-label">Prix min</label>
+                <input #prix_min type="number"  min="0" class="form-control" id="prix-min" aria-describedby="emailHelp" name="prix_min" ngModel>
+
+
+                <small *ngIf="prix_min.valueAsNumber < 0"
+                    class="text-danger">
+                    prix min doit être supérieur a 0
+                </small>
+
+                
+            </div>
+
+            <div class="mb-3">
+                <label for="prix-max" class="form-label">Prix max</label>
+                <input #prix_max type="number" min="1" class="form-control" id="prix-max" aria-describedby="emailHelp" name="prix_max" ngModel>
+
+                <small *ngIf="prix_max.valueAsNumber < 0"
+                    class="text-danger">
+                    prix max doit être supérieur a 0
+                </small>
+                <small *ngIf="prix_max.valueAsNumber < prix_min.valueAsNumber"
+                    class="text-danger">
+                    prix max doit être supérieur à prix_min
+                </small>
+
+            </div>
+            <button class="btn btn-primary me-5" type="submit"  [disabled]="search_form.invalid"> search</button>
+        </form>
+    </div>
+    <div class="col-12 mt-2">
+        
+        <button class="btn btn-primary" (click)="reset(search_form)"> reset filters</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12">
+        <app-c1 [annonces]="annonceList" [errorMsg]="errorMessage"></app-c1>
+    </div>
+
+</div>

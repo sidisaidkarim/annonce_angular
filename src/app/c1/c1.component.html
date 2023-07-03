@@ -1,0 +1,25 @@
+
+<div *ngIf="errorMsg" class="row mt-4">
+  <div class="alert alert-danger">
+    {{errorMsg}}
+  </div>
+</div>
+
+<div class="row mt-4">
+    <div *ngFor="let annonce of annonces | paginate: { itemsPerPage: 5, currentPage: p }">
+        <div class="card mb-3">
+            <div class="card-body">
+              <h5 class="card-title">{{annonce.titre}}</h5>
+              <p class="card-text">{{annonce.description}}</p>
+              <p class="card-text text-muted"> {{annonce.typeAnnonce}}</p>
+              <small class="text-danger">{{annonce.prix}}</small>
+            </div>
+          </div>
+    </div>
+    <div *ngIf="annonces.length >5">
+      <pagination-controls (pageChange)="p = $event"></pagination-controls>
+    </div>
+    
+</div>
+
+
