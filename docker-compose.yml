@@ -1,0 +1,12 @@
+version: '2'
+services:
+  staff-manager-api:
+    container_name: angular-annonces-ui
+    image: mchekini/angular-annonces-ui:1.0
+    ports:
+      - "5000:5000"
+
+networks:
+  default:
+    external:
+      name: staff-manager
