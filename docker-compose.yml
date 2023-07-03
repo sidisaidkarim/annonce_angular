@@ -1,8 +1,8 @@
 version: '2'
 services:
-  staff-manager-api:
+  angular-annonces-ui:
     container_name: angular-annonces-ui
-    image: mchekini/angular-annonces-ui:1.0
+    image: sskarim/angular-annonces-ui:1.0
     ports:
       - "5000:5000"
 
